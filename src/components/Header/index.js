@@ -21,7 +21,7 @@ export default class Header extends React.Component {
 	}
 
 	getWeatherAPIData(){
-		let city = '北京'
+		let city = '武汉'
 		axios.jsonp({
 			url:'http://api.map.baidu.com/telematics/v3/weather?location='+encodeURIComponent(city)+'&output=json&ak=3p49MVra6urFRGOT9s8UBWr2'
 		}).then(data => {
@@ -37,12 +37,12 @@ export default class Header extends React.Component {
 	}
 
 	render() {
-		const {dayImg,weather,temperature} = this.state;
+		const {dayImg,weather,temperature,userName,sysTime} = this.state;
 		return (
 			<div className="home-header">
 				<Row className="home-header-top">
 					<Col span="24">
-						<span><img src="/images/hi.png"/>欢迎，{this.state.userName}</span>
+						<span><img src="/images/hi.png"/>欢迎，{userName}</span>
 						<a href="#">退出</a>
 					</Col>
 				</Row>
@@ -51,10 +51,10 @@ export default class Header extends React.Component {
 						<span>首页</span>
 					</Col>
 					<Col span="20" className="breadcrumb-weather">
-						<span style={{marginRight:15}}>{this.state.sysTime}</span>
+						<span style={{marginRight:15}}>{sysTime}</span>
 						<span className="breadcrumb-weather-detail">
 							<img src={dayImg} alt='' style={{width:'16px',height:'16px',marginRight:7}}/>
-							{weather}{temperature}
+							{weather}{temperature} 武汉
 						</span>
 					</Col>
 				</Row>

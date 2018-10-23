@@ -8,7 +8,7 @@ export default class NevLeft extends React.Component {
 	state = {
 		menuTree:''
 	}
-
+	
 	componentDidMount(){
 		this.setState({
 			menuTree:this.renderMenu(MenuConfig)
