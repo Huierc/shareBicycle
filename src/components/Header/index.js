@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'antd';
+import {Link} from 'react-router-dom'
 import './index.less'
 import Until from '../../untils/untils'
 import axios from '../../axios/index'
@@ -43,7 +44,7 @@ export default class Header extends React.Component {
 				<Row className="home-header-top">
 					<Col span="24">
 						<span><img src="/images/hi.png"/>欢迎，{userName}</span>
-						<a href="#">退出</a>
+						<Link to={'/login'}><a href="#">退出</a></Link>
 					</Col>
 				</Row>
 				<Row className="home-header-breadcrumb">
