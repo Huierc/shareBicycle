@@ -21,7 +21,7 @@ const menuConfig = [
             },
             {
                 title: '通知提醒',
-                key: '/admin/ui/tong'
+                key: '/admin/ui/msg'
             }
         ]
     },
