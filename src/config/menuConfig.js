@@ -34,12 +34,12 @@ const menuConfig = [
         key: '/admin/form',
         children: [
             {
-                title: '按钮',
-                key: '/admin/form/btn'
+                title: '登录',
+                key: '/admin/form/login'
             },
             {
-                title: '弹框',
-                key: '/admin/form/modals'
+                title: '注册',
+                key: '/admin/form/register'
             },
             {
                 title: 'Loading',

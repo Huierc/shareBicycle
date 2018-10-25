@@ -36,13 +36,13 @@ export default class NevLeft extends React.Component {
 		return (
 			<div>
 				<div className="home-logo">
-					<img src="/images/logo.png" style={{ float: "left" }} />
+					<img src="/images/logo.png" style={{ float: "left" }} alt="" />
 					<h2 style={{ fontSize: 18, color: '#fff', marginLeft: 36 }}>Hello Bicycle</h2>
 				</div>
 				<Menu theme="dark">
 					{menuTree}
 				</Menu>
 			</div>
-		);
+		)
 	}
 }

@@ -1,7 +1,18 @@
 import React from 'react';
-import { Card, Row, Col } from 'antd'
+import { Card, Row, Col, Modal } from 'antd'
 import '../index.less'
 export default class Gallery extends React.Component {
+
+  state = {
+    visible: false
+  }
+
+  showBigImg = (item) => {
+    this.setState({
+      visible: true,
+      modalImg: '/images/imgL/' + item
+    })
+  }
 
   render() {
     const imgs = [
@@ -11,10 +22,11 @@ export default class Gallery extends React.Component {
       ['16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'],
       ['21.jpg', '22.jpg', '23.jpg', '24.jpg', '25.jpg']
     ]
-    const imgList = imgs.map((list) => list.map((item) =>
+    const imgList = imgs.map((list) => list.map((item, index) =>
       <Card
-        cover={<img src={'/images/imgL/' + item} alt="最美" />}
-        style={{marginBottom:10}}
+        cover={<img src={'/images/imgL/' + item} alt="最美" onClick={() => this.showBigImg(item)} />}
+        style={{ marginBottom: 10 }}
+        key={index}
       >
         <Card.Meta
           title="react admin"
@@ -29,12 +41,24 @@ export default class Gallery extends React.Component {
         <Row gutter={10}>
           {
             imgList.map((item, index) => (
-              <Col md={4} key={index} style={{marginLeft:30}}>
+              <Col md={4} key={index} style={{ marginLeft: 30 }}>
                 {item}
               </Col>
             ))
           }
         </Row>
+        <Modal
+          visible={this.state.visible}
+          footer={null}
+          onCancel={() => {
+            this.setState({
+              visible: false
+            })
+          }}
+          title="真美膩呀"
+        >
+          {<img alt="" src={this.state.modalImg} style={{width:'100%',height:'400px'}} />}
+        </Modal>
       </div>
     )
   }

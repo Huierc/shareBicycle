@@ -5,7 +5,7 @@ export default class Axios{
       Jsonp(options.url,{
         param:'callback'
       },function(err,response){
-        if(response.status == 'success'){
+        if(response.status === 'success'){
           resovle(response);
         }else{
           reject(response.message);
