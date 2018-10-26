@@ -40,14 +40,6 @@ const menuConfig = [
             {
                 title: '注册',
                 key: '/admin/form/register'
-            },
-            {
-                title: 'Loading',
-                key: '/admin/form/load'
-            },
-            {
-                title: '通知提醒',
-                key: '/admin/form/tong'
             }
         ]
     },

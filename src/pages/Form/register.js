@@ -1,10 +1,15 @@
 import React from 'react';
-import { Card, Form, Input, Button, message, Icon, Checkbox, Radio, InputNumber, Select } from 'antd';
+import {
+  Card, Form, Input, Button, message, Icon,
+  DatePicker, Radio, InputNumber, Select, Switch,
+  TimePicker,Checkbox
+} from 'antd';
 import './index.less';
+import moment from 'moment';
 
 const ForItem = Form.Item;
 const Option = Select.Option;
-
+const InpArea = Input.TextArea;
 class Register extends React.Component {
 
   handelSubmit = () => {
@@ -30,29 +35,31 @@ class Register extends React.Component {
       }
     }
 
+    const configName = {
+      initialValue: 'Jack',
+      rules: [
+        {
+          required: true,
+          message: '用户名不能为空'
+        },
+        {
+          min: 5, max: 15,
+          message: '长度不在范围内'
+        },
+        {
+          pattern: new RegExp('^\\w+$', 'g'),
+          message: '用户名字母'
+        }
+      ]
+    }
+
     return (
       <div className="home-warp-btn">
         <Card title="注册表单" style={{ marginTop: 10 }}>
           <Form layout="horizontal" style={{ width: 400 }}>
             <ForItem label="用户名" {...formItemLayout}>
               {
-                getFieldDecorator('userName', {
-                  initialValue: 'Jack',
-                  rules: [
-                    {
-                      required: true,
-                      message: '用户名不能为空'
-                    },
-                    {
-                      min: 5, max: 15,
-                      message: '长度不在范围内'
-                    },
-                    {
-                      pattern: new RegExp('^\\w+$', 'g'),
-                      message: '用户名字母'
-                    }
-                  ]
-                })(
+                getFieldDecorator('userName', configName)(
                   <Input prefix={<Icon type="user"></Icon>} placeholder="请输入用户名" />
                 )
               }
@@ -69,7 +76,7 @@ class Register extends React.Component {
                   ]
                 })(
                   <Input prefix={<Icon type="lock"></Icon>} placeholder="请输入密码" type="password" />
-                )
+                  )
               }
             </ForItem>
             <ForItem label="性别" {...formItemLayout}>
@@ -82,7 +89,7 @@ class Register extends React.Component {
                     <Radio value="1">男</Radio>
                     <Radio value="2">女</Radio>
                   </Radio.Group>
-                )
+                  )
               }
             </ForItem>
             <ForItem label="年龄" {...formItemLayout}>
@@ -92,7 +99,7 @@ class Register extends React.Component {
                   rules: []
                 })(
                   <InputNumber></InputNumber>
-                )
+                  )
               }
             </ForItem>
 
@@ -109,7 +116,7 @@ class Register extends React.Component {
                     <Option value="4">鲶鱼si条</Option>
                     <Option value="5">鲶鱼wu条</Option>
                   </Select>
-                )
+                  )
               }
             </ForItem>
 
@@ -126,14 +133,65 @@ class Register extends React.Component {
                     <Option value="4">唱歌</Option>
                     <Option value="5">篮球</Option>
                   </Select>
-                )
+                  )
               }
             </ForItem>
 
+            <ForItem label="是否已婚" {...formItemLayout}>
+              {
+                getFieldDecorator('isMarried', {
+                  valuePropName: 'checked',
+                  initialValue: true
+                })(
+                  <Switch />
+                  )
+              }
+            </ForItem>
 
+            <ForItem label="生日" {...formItemLayout}>
+              {
+                getFieldDecorator('birthday', {
+                  initialValue: moment('2018-10-16')
+                })(
+                  <DatePicker showTime format="YYYY-MM-DD" />
+                  )
+              }
+            </ForItem>
+
+            <ForItem label="地址" {...formItemLayout}>
+              {
+                getFieldDecorator('adress', {
+                  initialValue: '武汉'
+                })(
+                  <InpArea autosize={
+                    {
+                      minRows: 2,
+                      maxRows: 6
+                    }
+                  } />
+                  )
+              }
+            </ForItem>
+
+            <ForItem label="早起时间" {...formItemLayout}>
+              {
+                getFieldDecorator('time')(
+                  <TimePicker showTime />
+                  )
+              }
+            </ForItem>
+
+            <ForItem label="" {...formItemLayout}>
+              {
+                getFieldDecorator('check')(
+                  <Checkbox>我同意<a href="#">协议</a></Checkbox>
+                  )
+              }
+            </ForItem>
 
             <ForItem>
               <Button type="primary" block onClick={this.handelSubmit}>注册</Button>
+              <Button type="primary" block onClick={this.handelSubmit}>重置</Button>
             </ForItem>
           </Form>
         </Card>
