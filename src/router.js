@@ -11,6 +11,7 @@ import Admin from './admin';
 import NoMacth from './pages/noMacth';
 import Login from './pages/Form/login';
 import Register from './pages/Form/register';
+import BaseTable from './pages/Table/bascTable';
 
 export default class Router extends React.Component{
   render(){
@@ -29,6 +30,8 @@ export default class Router extends React.Component{
                <Route path="/admin/ui/gallery" component={Gallery}/>
                <Route path="/admin/form/login" component={Login}/>
                <Route path="/admin/form/register" component={Register}/>
+               <Route path="/admin/table/base" component={BaseTable}/>
+                
                <Route component={NoMacth}/>
                </Switch>
             </Admin>

@@ -48,8 +48,8 @@ const menuConfig = [
         key: '/admin/table',
         children: [
             {
-                title: '按钮',
-                key: '/admin/table/btn'
+                title: '基本表格',
+                key: '/admin/table/base'
             },
             {
                 title: '弹框',
