@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col } from 'antd';
 import {Link} from 'react-router-dom'
 import './index.less'
-import Until from '../../untils/untils'
+import utils from '../../utils/utils'
 import axios from '../../axios/index'
 export default class Header extends React.Component {
 
@@ -13,7 +13,7 @@ export default class Header extends React.Component {
 
 	componentWillMount(){
 		setInterval(() => {
-			let sysTime = Until.formateDate(new Date())
+			let sysTime = utils.formateDate(new Date())
 			this.setState({
 				sysTime
 			})

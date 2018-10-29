@@ -1,13 +1,15 @@
 import React from 'react';
 import { Table, Card, Modal, Button } from 'antd';
 import './index.less'
+import utils from './../../utils/utils'
 import axios from './../../axios/index';
 
 export default class BaseTable extends React.Component {
 
   state = {
     dataSource: [],
-    dataSource2: []
+    dataSource2: [],
+    pagination:null
   }
 
   componentDidMount() {
@@ -23,9 +25,11 @@ export default class BaseTable extends React.Component {
     }).then((res) => {
       if(res.success){
         this.setState({
-          dataSource2: res.data.result,
+          dataSource2: res.data.result.list,
           selectedRowKeys:[],
-          selectedRow:null
+          selectedRow:null,
+          pagination:utils.pagination(res,()=>{
+          })
         })
       }
     })
@@ -123,6 +127,8 @@ export default class BaseTable extends React.Component {
       }
     }
 
+    console.log(this.state.dataSource2)
+
     return (
       <div className="home-warp-btn">
         <Card title="基本表格">
@@ -145,11 +151,18 @@ export default class BaseTable extends React.Component {
             dataSource={this.state.dataSource2} columns={columns} />
         </Card>
         <Card title="MOck-多选">
-        <Button type="primary" onClick={this.handleDelete}>删除</Button>
+          <Button type="primary" onClick={this.handleDelete}>删除</Button>
           <Table 
             bordered
             rowSelection={rowCheckSelection}
             dataSource={this.state.dataSource2} columns={columns} />
+        </Card>
+        <Card title="MOck-多选">
+        <Button type="primary" onClick={this.handleDelete}>删除</Button>
+          <Table 
+            bordered
+            rowSelection={rowCheckSelection}
+            dataSource={this.state.dataSource2} columns={columns} pagination={this.state.pagination}/>
         </Card>
       </div>
     )
